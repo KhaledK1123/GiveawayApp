@@ -31,7 +31,6 @@ class LoginScreen : ComponentActivity() {
     }
 }
 
-//Title Text
 @Composable
 fun LoginText(displayText: String) {
 
