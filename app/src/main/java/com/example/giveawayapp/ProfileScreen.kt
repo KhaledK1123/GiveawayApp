@@ -53,7 +53,7 @@ fun SimpleText4(displayText: String) {
     )
 }
 
-//Should user want to update password
+//Should donor want to update password
 @Composable
 fun ChangePassword(text: String) {
     Text(
@@ -64,7 +64,7 @@ fun ChangePassword(text: String) {
         ),
         modifier = Modifier
             .paddingFromBaseline(top = 75.dp)
-            .padding(horizontal = 16.dp)
+            .padding(horizontal = 15.dp)
             .fillMaxWidth()
     )
 }
@@ -79,11 +79,12 @@ fun ConfirmPasswordChange(text: String) {
         ),
         modifier = Modifier
             .paddingFromBaseline(top = 50.dp)
-            .padding(horizontal = 16.dp)
+            .padding(horizontal = 15.dp)
             .fillMaxWidth()
     )
 }
 
+// Other statements ('if-else', or similar?) needed, after line 98 ??
 fun ChangePasswordInput(change_password: String, confirm_password_change: String): String
 {
    var status: String = ""
@@ -151,7 +152,9 @@ fun SubmitButton2() {
     }
 }
 
-// Fixing Line 150 error(s): function needed, for balancing - last composable
+/* Fixing Line 150 errors (1-2, depending): function needed, for balancing -
+- end of last composable
+*/
 fun Button(shape: RoundedCornerShape, colors: ButtonColors, modifier: Modifier,
            onClick: () -> Unit) {
 }
