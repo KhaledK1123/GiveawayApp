@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GiveawayApp">
         <activity
+            android:name=".ProfileScreen"
+            android:exported="false"
+            android:label="ProfileScreen"
+            android:theme="@style/Theme.GiveawayApp" />
+        <activity
             android:name=".ForgotPassword"
             android:exported="false"
             android:label="@string/title_activity_forgot_password"

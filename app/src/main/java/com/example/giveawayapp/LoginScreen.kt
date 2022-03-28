@@ -166,7 +166,7 @@ fun Login() {
 
                 onClick = {
                     status = LoginInput(usernameInput, passwordInput); context.startActivity(
-                    Intent(context, CreateAccount::class.java)
+                    Intent(context, ProfileScreen::class.java)
                 )
                 }) {
 
