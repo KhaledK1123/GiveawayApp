@@ -3,10 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android Projects/ClassProjects/GiveawayApp/app/src/main/res/layout/activity_main.xml" value="0.18642350557244175" />
-        <entry key="..\:/Android Projects/ClassProjects/GiveawayApp/app/src/main/res/layout/android_main.xml" value="0.18642350557244175" />
-        <entry key="..\:/Android Projects/ClassProjects/GiveawayApp/app/src/main/res/menu/menu.xml" value="0.3768518518518518" />
-        <entry key="..\:/Android Projects/ClassProjects/GiveawayApp/app/src/main/res/menu/nav_menu.xml" value="0.1" />
+        <entry key="../../../layout/compose-model-1648562693370.xml" value="0.1" />
       </map>
     </option>
   </component>
