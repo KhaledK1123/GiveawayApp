@@ -4,10 +4,12 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 
-interface DonoListService {
+interface New4UApi {
 
-    @GET("donations/")
-    suspend fun getDonoList(@Body donation: Donation): Response<Donation>
+    @GET("/donations")
+    fun getDonations(): Response<Donation>
+
+    //@GET("donations/{}")
 
 
     //what about this block? what does it mean?

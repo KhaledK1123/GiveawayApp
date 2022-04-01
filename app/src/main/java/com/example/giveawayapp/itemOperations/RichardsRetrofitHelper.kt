@@ -7,13 +7,13 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object richardRetrofitHelper {
+object RichardsRetrofitHelper {
 
     private val retrofit: Retrofit
 
     init{
         val builder = Retrofit.Builder()
-            .baseUrl("https://private-15a842-new4u.apiary-mock.com/")
+            .baseUrl("https://private-15a842-new4u.apiary-mock.com")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
 
