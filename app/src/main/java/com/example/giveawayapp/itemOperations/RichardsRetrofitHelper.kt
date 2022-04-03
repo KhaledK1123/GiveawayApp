@@ -32,10 +32,10 @@ object RichardsRetrofitHelper {
 
     }
 
-    fun getDonoList():DonoListService
+    fun getDonoList():New4UApi
     {
 
-        return retrofit.create(DonoListService::class.java)
+        return retrofit.create(New4UApi::class.java)
     }
 
     //TODO continue to study your HTTP methods and requests and build an interface to get the donations list
