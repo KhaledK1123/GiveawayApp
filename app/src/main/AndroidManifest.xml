@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GiveawayApp">
         <activity
+            android:name=".itemOperations.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.GiveawayApp" />
+        <activity
             android:name=".Profile"
             android:exported="false"
             android:label="ProfileScreen"
