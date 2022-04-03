@@ -15,6 +15,11 @@
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.GiveawayApp" />
         <activity
+            android:name=".Profile"
+            android:exported="false"
+            android:label="ProfileScreen"
+            android:theme="@style/Theme.GiveawayApp" />
+        <activity
             android:name=".ForgotPassword"
             android:exported="false"
             android:label="@string/title_activity_forgot_password"
@@ -29,6 +34,16 @@
             android:exported="false"
             android:label="@string/title_activity_login_screen"
             android:theme="@style/Theme.GiveawayApp" />
+        <activity
+            android:name=".Home"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.GiveawayApp"/>
+        <activity
+            android:name=".Social"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.GiveawayApp"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

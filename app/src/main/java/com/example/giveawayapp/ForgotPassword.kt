@@ -104,7 +104,6 @@ fun NewPasswordInput(new_password: String, confirm_password: String): String {
     return status
 }
 
-
 @Composable
 fun SubmitButton() {
 
