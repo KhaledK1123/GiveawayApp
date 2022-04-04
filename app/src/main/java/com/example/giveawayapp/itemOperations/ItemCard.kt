@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun itemCard(donation: Donation)
+fun ItemCard(donation: Donation)
 {
     Card(onClick = { /*Send intent with donation object to Item Page*/ }) {
         Column(Modifier.fillMaxWidth()) {
@@ -32,5 +32,5 @@ fun itemCard(donation: Donation)
 @Composable
 @Preview
 fun itemListPreview() {
-    itemCard(donation = dummyDonation.dummy)
+    ItemCard(donation = dummyDonation.dummy)
 }

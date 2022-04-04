@@ -10,6 +10,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,6 +33,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.giveawayapp.itemOperations.Donation
+import com.example.giveawayapp.itemOperations.DonoViewModel
+import com.example.giveawayapp.itemOperations.ItemCard
 
 class Home : ComponentActivity() {
     @ExperimentalFoundationApi
@@ -157,6 +161,7 @@ fun MainScreen() {
         bottomBar = { BottomNavigationBar(navController = navController) }
     ) {
         Navigation(navController)
+        //LazyDonationList(donations = DonoViewModel.donations)
     }
 }
 
@@ -190,5 +195,12 @@ fun Navigation(navController: NavHostController) {
         composable(NavigationItem.Profile.route) {
             ProfileScreen()
         }
+    }
+}
+
+@Composable
+fun LazyDonationList(donations: List<Donation>) {
+    LazyColumn() {
+        items(donations.size) { index -> ItemCard(donation = donations.elementAt(index))}
     }
 }
