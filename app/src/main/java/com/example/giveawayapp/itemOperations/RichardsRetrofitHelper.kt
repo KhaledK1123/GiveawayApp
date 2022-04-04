@@ -9,11 +9,12 @@ import java.util.concurrent.TimeUnit
 
 object RichardsRetrofitHelper {
 
+    private const val BASE_URL = "https://private-15a842-new4u.apiary-mock.com"
     private val retrofit: Retrofit
 
     init{
         val builder = Retrofit.Builder()
-            .baseUrl("https://private-15a842-new4u.apiary-mock.com")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
 
@@ -32,15 +33,7 @@ object RichardsRetrofitHelper {
 
     }
 
-    fun getDonoList():New4UApi
-    {
-
-        return retrofit.create(New4UApi::class.java)
+    val donationService: DonationService by lazy{
+        retrofit.create(DonationService::class.java)
     }
-
-    //TODO continue to study your HTTP methods and requests and build an interface to get the donations list
-//    fun getAuthService():AuthAPIService{
-//
-//    }
-    //fun getDonationsList():DonationAPIService{}
 }
