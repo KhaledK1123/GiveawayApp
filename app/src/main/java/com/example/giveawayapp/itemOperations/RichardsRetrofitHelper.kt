@@ -33,7 +33,7 @@ object RichardsRetrofitHelper {
 
     }
 
-    val donationService: DonationService by lazy{
-        retrofit.create(DonationService::class.java)
+    val donationService: ApiInterface by lazy{
+        retrofit.create(ApiInterface::class.java)
     }
 }
