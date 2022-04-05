@@ -1,4 +1,6 @@
-package com.example.giveawayapp.itemOperations
+package com.example.giveawayapp.itemOperations.data.repository
+
+import com.example.giveawayapp.itemOperations.data.network.ApiInterface
 
 class DonoRepository(val donationService: ApiInterface) {
 

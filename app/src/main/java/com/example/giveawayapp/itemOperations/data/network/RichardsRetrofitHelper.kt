@@ -1,4 +1,4 @@
-package com.example.giveawayapp.itemOperations
+package com.example.giveawayapp.itemOperations.data.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
@@ -6,7 +6,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import kotlin.reflect.KProperty
 
 object RichardsRetrofitHelper {
 
@@ -20,9 +19,9 @@ object RichardsRetrofitHelper {
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
 
+        /*"optional, but good practice." Client gives timeouts,
+        though I don't quite understand the purpose of the interceptor*/
         val loggingInterceptor = HttpLoggingInterceptor()
-
-        //boiler plate; little-no understanding
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
         val okHttpClient = OkHttpClient.Builder()
@@ -32,6 +31,12 @@ object RichardsRetrofitHelper {
             .writeTimeout(1,TimeUnit.MINUTES).build()
 
         retrofit = builder.client(okHttpClient).build()
+
+    }
+
+    fun getDonationService(): ApiInterface {
+
+        return retrofit.create(ApiInterface::class.java)
 
     }
 

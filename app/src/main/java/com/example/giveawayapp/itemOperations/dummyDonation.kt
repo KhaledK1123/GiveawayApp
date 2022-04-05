@@ -1,5 +1,7 @@
 package com.example.giveawayapp.itemOperations
 
+import com.example.giveawayapp.itemOperations.data.model.Donation
+
 object dummyDonation {
     val dummy = Donation(
         id = 0,

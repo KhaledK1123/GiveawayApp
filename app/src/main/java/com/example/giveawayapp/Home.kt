@@ -1,8 +1,6 @@
 package com.example.giveawayapp
 
 import android.os.Bundle
-import android.view.MenuItem
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -15,10 +13,6 @@ import androidx.compose.material.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.*
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -27,14 +21,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.*
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.giveawayapp.itemOperations.Donation
-import com.example.giveawayapp.itemOperations.DonoViewModel
+import com.example.giveawayapp.itemOperations.data.model.Donation
 import com.example.giveawayapp.itemOperations.ItemCard
 
 class Home : ComponentActivity() {
