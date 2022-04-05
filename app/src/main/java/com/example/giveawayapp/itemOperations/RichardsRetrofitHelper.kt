@@ -6,6 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import kotlin.reflect.KProperty
 
 object RichardsRetrofitHelper {
 
@@ -13,10 +14,12 @@ object RichardsRetrofitHelper {
     private val retrofit: Retrofit
 
     init{
-        val builder = Retrofit.Builder()
+
+            val builder = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .build();
 
         val loggingInterceptor = HttpLoggingInterceptor()
 
@@ -33,7 +36,20 @@ object RichardsRetrofitHelper {
 
     }
 
-    val donationService: ApiInterface by lazy{
+    /* Capital 'L', for line 40, REMOVES constant, red underline, from 41-43, but 'Lazy'
+     remains a problem */
+    val donationService: ApiInterface by Lazy{
         retrofit.create(ApiInterface::class.java)
     }
 }
+
+/* 'private operator fun <T> Lazy<T>.getValue(richardsRetrofitHelper: RichardsRetrofitHelper,
+property: KProperty<T?>): T { }' > suggested, to get rid of lines 41-43 constant, red underline:
+didn't work; tried other ideas */
+
+/* 'Retrofit retrofit = new Retrofit.Builder()' > this one shows up, on square.github.io/retrofit/;
+tried it here: no effect; may belong SOMEWHERE here, though
+
+Line 38: 'lazy' - when adding 'Column, after it, red under ALL of lines 39-40 disappears
+
+ */
