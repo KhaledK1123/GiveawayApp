@@ -19,7 +19,6 @@ object RichardsRetrofitHelper {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .build();
 
         val loggingInterceptor = HttpLoggingInterceptor()
 
@@ -38,9 +37,9 @@ object RichardsRetrofitHelper {
 
     /* Capital 'L', for line 40, REMOVES constant, red underline, from 41-43, but 'Lazy', being
      there at all, remains a problem, w/intellisense */
-    val donationService: ApiInterface by Lazy{
-        retrofit.create(ApiInterface::class.java)
-    }
+//    val donationService: ApiInterface by Lazy{
+//        retrofit.create(ApiInterface::class.java)
+//    }
 }
 
 /* 'private operator fun <T> Lazy<T>.getValue(richardsRetrofitHelper: RichardsRetrofitHelper,
