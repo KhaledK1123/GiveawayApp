@@ -1,4 +1,4 @@
-package com.example.giveawayapp.itemOperations
+package com.example.giveawayapp.itemOperations.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -36,34 +36,27 @@ class MainActivity : ComponentActivity() {
 
 fun printDonations () {
 
-    val baseUrl = "https://private-15a842-new4u.apiary-mock.com/"
-    val retrofit = Retrofit.Builder()
-        .baseUrl(baseUrl)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(ApiInterface::class.java)
-
-
-    val call = retrofit.getDonations()
+    //proper adherance to architecture will render this call properly; to be deleted
+    //val call = retrofit.getDonations()
 
     var pojoDonationList = mutableListOf<Donation>()
 
-    call.enqueue(object: Callback<List<Donation>?> {
-
-
-            override fun onResponse(call: Call<List<Donation>?>, response: Response<List<Donation>?>) {
-                val responseBody = response.body()!!
-
-                for (Donation in responseBody) {
-                    pojoDonationList.add(Donation)
-                }
-            }
-
-            override fun onFailure(call: Call<List<Donation>?>, t: Throwable) {
-                Log.d("Main","onFailure: "+t.message)
-            }
-        }
-    )
+//    call.enqueue(object: Callback<List<Donation>?> {
+//
+//
+//            override fun onResponse(call: Call<List<Donation>?>, response: Response<List<Donation>?>) {
+//                val responseBody = response.body()!!
+//
+//                for (Donation in responseBody) {
+//                    pojoDonationList.add(Donation)
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<List<Donation>?>, t: Throwable) {
+//                Log.d("Main","onFailure: "+t.message)
+//            }
+//        }
+//    )
 }
 
 

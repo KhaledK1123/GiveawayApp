@@ -1,4 +1,4 @@
-package com.example.giveawayapp.itemOperations
+package com.example.giveawayapp.itemOperations.data.model
 
 import com.example.giveawayapp.itemOperations.data.model.Donation
 

@@ -9,10 +9,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import com.example.giveawayapp.itemOperations.data.network.RichardsRetrofitHelper
 
 class DonoViewModel:ViewModel() {
 
-
+private val apiService = RichardsRetrofitHelper
 //    private val donationService = RichardsRetrofitHelper.donationService
 //    private lateinit var repository: DonoRepository
 //
