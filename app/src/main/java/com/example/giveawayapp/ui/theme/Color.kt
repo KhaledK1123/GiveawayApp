@@ -1,4 +1,4 @@
-package com.example.giveawayapp.view.ui.theme
+package com.example.giveawayapp.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

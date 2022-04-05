@@ -27,7 +27,7 @@ class DonoViewModel:ViewModel() {
     fun fetchDonationList() {
         var response = DonoRepository(donationService)
         viewModelScope.launch {
-            var donations = repository.fetchDonationList()
+            //var donations = repository.fetchDonationList()
 
         }
     }

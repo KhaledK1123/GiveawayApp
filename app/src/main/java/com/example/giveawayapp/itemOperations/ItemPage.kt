@@ -7,10 +7,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.giveawayapp.view.ui.theme.GiveawayAppTheme
+import com.example.giveawayapp.ui.theme.GiveawayAppTheme
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
