@@ -36,8 +36,8 @@ object RichardsRetrofitHelper {
 
     }
 
-    /* Capital 'L', for line 40, REMOVES constant, red underline, from 41-43, but 'Lazy'
-     remains a problem */
+    /* Capital 'L', for line 40, REMOVES constant, red underline, from 41-43, but 'Lazy', being
+     there at all, remains a problem, w/intellisense */
     val donationService: ApiInterface by Lazy{
         retrofit.create(ApiInterface::class.java)
     }
@@ -48,8 +48,4 @@ property: KProperty<T?>): T { }' > suggested, to get rid of lines 41-43 constant
 didn't work; tried other ideas */
 
 /* 'Retrofit retrofit = new Retrofit.Builder()' > this one shows up, on square.github.io/retrofit/;
-tried it here: no effect; may belong SOMEWHERE here, though
-
-Line 38: 'lazy' - when adding 'Column, after it, red under ALL of lines 39-40 disappears
-
- */
+tried it here: no effect; may belong SOMEWHERE here, though */
