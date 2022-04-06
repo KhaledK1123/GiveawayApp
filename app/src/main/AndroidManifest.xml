@@ -22,12 +22,12 @@
             android:label="ProfileScreen"
             android:theme="@style/Theme.GiveawayApp" />
         <activity
-            android:name=".ForgotPassword"
+            android:name=".ForgotPasswordView"
             android:exported="false"
             android:label="@string/title_activity_forgot_password"
             android:theme="@style/Theme.GiveawayApp" />
         <activity
-            android:name=".CreateAccount"
+            android:name=".CreateAccountView"
             android:exported="false"
             android:label="@string/title_activity_create_account"
             android:theme="@style/Theme.GiveawayApp" />

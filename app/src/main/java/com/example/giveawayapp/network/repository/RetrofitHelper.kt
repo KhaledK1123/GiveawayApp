@@ -14,9 +14,7 @@ object RetrofitHelper {
     init {
 
         val builder = Retrofit.Builder()
-            //.baseUrl("https://tasks-planner-api.herokuapp.com/")  //email:santiago@mail.com, password:passw0rd
-            .baseUrl("https://private-2597e-loginscreen.apiary-mock.com/")
-            //.baseUrl("https://private-f7db8b-createaccount6.apiary-mock.com/")
+            .baseUrl("https://private-37ad8-new4u.apiary-mock.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
 

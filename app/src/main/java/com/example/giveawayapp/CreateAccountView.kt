@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,8 +24,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.giveawayapp.viewmodel.CreateAccountViewModel
 
-class CreateAccount : ComponentActivity() {
+class CreateAccountView : ComponentActivity() {
+
+    private val viewModel1: CreateAccountViewModel by viewModels()
+
     @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +40,7 @@ class CreateAccount : ComponentActivity() {
             ) {
                 SimpleText3("Create Account")
 
-                CreateAccountButton1()
+                CreateAccountButton1(viewModel1 = viewModel1)
             }
         }
     }
@@ -53,7 +58,7 @@ fun SimpleText3(displayText: String) {
 }
 
 @Composable
-fun CreateAccountButton1() {
+fun CreateAccountButton1(modifier: Modifier = Modifier, viewModel1: CreateAccountViewModel) {
 
     val context = LocalContext.current
     Column(
@@ -65,19 +70,19 @@ fun CreateAccountButton1() {
     )
     {
 
-        var fullNameFieldText by rememberSaveable { mutableStateOf("") }
-        var usernameFieldText by rememberSaveable { mutableStateOf("") }
-        var emailFieldText by rememberSaveable { mutableStateOf("") }
-        var addressFieldText by rememberSaveable { mutableStateOf("") }
-        var cityFieldText by rememberSaveable { mutableStateOf("") }
-        var stateFieldText by rememberSaveable { mutableStateOf("") }
-        var zipCodeFieldText by rememberSaveable { mutableStateOf("") }
-        var passwordFieldText by rememberSaveable { mutableStateOf("") }
-        var confirmPasswordFieldText by rememberSaveable { mutableStateOf("") }
+        var fullName by rememberSaveable { mutableStateOf(value = "") }
+        var username by rememberSaveable { mutableStateOf(value = "") }
+        var email by rememberSaveable { mutableStateOf(value = "") }
+        var address by rememberSaveable { mutableStateOf(value = "") }
+        var city by rememberSaveable { mutableStateOf(value = "") }
+        var state by rememberSaveable { mutableStateOf(value = "") }
+        var zipCode by rememberSaveable { mutableStateOf(value = "") }
+        var password by rememberSaveable { mutableStateOf(value = "") }
+        var confirmPassword by rememberSaveable { mutableStateOf(value = "") }
 
         TextField(
-            value = fullNameFieldText,
-            onValueChange = { fullNameFieldText = it },
+            value = fullName,
+            onValueChange = { fullName = it },
             label = { Text("Full Name") },
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
@@ -85,8 +90,8 @@ fun CreateAccountButton1() {
         )
 
         TextField(
-            value = usernameFieldText,
-            onValueChange = { usernameFieldText = it },
+            value = username,
+            onValueChange = { username = it },
             label = { Text("Username") },
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
@@ -94,8 +99,8 @@ fun CreateAccountButton1() {
         )
 
         TextField(
-            value = emailFieldText,
-            onValueChange = { emailFieldText = it },
+            value = email,
+            onValueChange = { email = it },
             label = { Text("Email") },
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
@@ -103,8 +108,8 @@ fun CreateAccountButton1() {
         )
 
         TextField(
-            value = addressFieldText,
-            onValueChange = { addressFieldText = it },
+            value = address,
+            onValueChange = { address = it },
             label = { Text("Address") },
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
@@ -112,8 +117,8 @@ fun CreateAccountButton1() {
         )
 
         TextField(
-            value = cityFieldText,
-            onValueChange = { cityFieldText = it },
+            value = city,
+            onValueChange = { city = it },
             label = { Text("City") },
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
@@ -121,8 +126,8 @@ fun CreateAccountButton1() {
         )
 
         TextField(
-            value = stateFieldText,
-            onValueChange = { stateFieldText = it },
+            value = state,
+            onValueChange = { state = it },
             label = { Text("State") },
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
@@ -130,8 +135,8 @@ fun CreateAccountButton1() {
         )
 
         TextField(
-            value = zipCodeFieldText,
-            onValueChange = { zipCodeFieldText = it },
+            value = zipCode,
+            onValueChange = { zipCode = it },
             label = { Text("Zip Code") },
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
@@ -139,8 +144,8 @@ fun CreateAccountButton1() {
         )
 
         TextField(
-            value = passwordFieldText,
-            onValueChange = { passwordFieldText = it },
+            value = password,
+            onValueChange = { password = it },
             label = { Text("Password") },
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
@@ -148,8 +153,8 @@ fun CreateAccountButton1() {
         )
 
         TextField(
-            value = confirmPasswordFieldText,
-            onValueChange = { confirmPasswordFieldText = it },
+            value = confirmPassword,
+            onValueChange = { confirmPassword = it },
             label = { Text("Confirm Password") },
             modifier = Modifier
                 .padding(top = 5.dp, bottom = 10.dp, start = 15.dp, end = 15.dp)
@@ -163,9 +168,12 @@ fun CreateAccountButton1() {
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
                 .fillMaxWidth(),
-            onClick = {
 
-                context.startActivity(Intent(context, MainActivity::class.java))
+            onClick = {viewModel1.createAccount(fullName,username,email,address,city
+                ,state,zipCode,password,confirmPassword)
+                if(viewModel1.successful() == true) {
+                    context.startActivity(Intent(context, MainActivity::class.java))
+                }
             })
         {
             Text(
