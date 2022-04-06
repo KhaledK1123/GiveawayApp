@@ -4,7 +4,7 @@ import android.util.Log
 import com.example.giveawayapp.itemOperations.data.model.Donation
 import com.example.giveawayapp.itemOperations.data.network.ApiInterface
 
-class DonoRepository(val donationService: ApiInterface) {
+class DonationRepository(val donationService: ApiInterface) {
 
     sealed class Result /*Creates data classes which returns either a movieList
                             or a throwable failure
@@ -14,7 +14,7 @@ class DonoRepository(val donationService: ApiInterface) {
         data class Failure(val throwable: Throwable): Result()
     }
 
-    suspend fun fetchTrendingMovies():Result {
+    suspend fun fetchDonationList():Result {
 
         return try {
 
