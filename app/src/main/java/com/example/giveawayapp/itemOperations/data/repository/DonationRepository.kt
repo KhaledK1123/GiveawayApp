@@ -4,7 +4,7 @@ import android.util.Log
 import com.example.giveawayapp.itemOperations.data.model.Donation
 import com.example.giveawayapp.itemOperations.data.network.ApiInterface
 
-class DonationRepository(val donationService: ApiInterface) {
+class DonationRepository(private val donationService: ApiInterface) {
 
     sealed class Result /*Creates data classes which returns either a movieList
                             or a throwable failure

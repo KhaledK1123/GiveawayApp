@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName
 data class Donation(
 
     @SerializedName("id")
-    override val id: Int,
+    val id: Int,
 
     @SerializedName("publisher")
-    override val publisher: String,
+    val publisher: String,
 
     @SerializedName("donation")
     val donationName: String,
@@ -27,4 +27,4 @@ data class Donation(
 
     @SerializedName("images")
     val images: List<String>
-    ) : Listable()
+    )

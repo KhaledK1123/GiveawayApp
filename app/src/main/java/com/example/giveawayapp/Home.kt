@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,7 +28,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.giveawayapp.itemOperations.data.model.Donation
-import com.example.giveawayapp.itemOperations.ItemCard
+import com.example.giveawayapp.itemOperations.ui.ItemCard
+import com.example.giveawayapp.itemOperations.ui.ItemClickable
 
 class Home : ComponentActivity() {
     @ExperimentalFoundationApi
@@ -190,8 +193,21 @@ fun Navigation(navController: NavHostController) {
 }
 
 @Composable
-fun LazyDonationList(donations: List<Donation>) {
-    LazyColumn() {
-        items(donations.size) { index -> ItemCard(donation = donations.elementAt(index))}
+fun DonationList (
+    navController: NavController,
+    donationList: List<Donation>,
+    onItemClicked: (item:Donation) -> Unit
+) {
+    var listState = rememberLazyListState()
+
+    LazyColumn(state = listState) {
+
+        itemsIndexed(donationList) {index, item ->
+            ItemClickable(
+                navController = navController,
+                donation = donationList[index],
+                onItemClicked
+            )
+        }
     }
 }

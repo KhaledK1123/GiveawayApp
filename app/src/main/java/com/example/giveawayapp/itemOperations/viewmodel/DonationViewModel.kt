@@ -11,7 +11,7 @@ import com.example.giveawayapp.itemOperations.data.model.Donation
 import com.example.giveawayapp.itemOperations.data.network.RichardsRetrofitHelper
 import com.example.giveawayapp.itemOperations.data.repository.DonationRepository
 
-class DonoViewModel:ViewModel() {
+class DonationViewModel:ViewModel() {
 
     private val apiService = RichardsRetrofitHelper.getDonationService()
     private lateinit var repository: DonationRepository

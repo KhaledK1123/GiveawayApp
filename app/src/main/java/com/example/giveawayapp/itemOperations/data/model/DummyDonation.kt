@@ -2,15 +2,15 @@ package com.example.giveawayapp.itemOperations.data.model
 
 import com.example.giveawayapp.itemOperations.data.model.Donation
 
-object dummyDonation {
+object DummyDonation {
     val dummy = Donation(
         id = 0,
         donationName = "Dummy",
-        donor_username = "rescueAnne",
+        publisher = "rescueAnne",
         location = "Paris, France",
         time = "03/27/2022, 12:34",
         description = "A dummy donation",
-        tags = arrayOf("L'Inconnue de la Seine", "La Belle Italienne"),//needs conversion
-        images = arrayOf("mask", "dummy")//Kotlin will print the name of the data and not the data
+        tags = listOf<String>("L'Inconnue de la Seine", "La Belle Italienne"),//needs conversion
+        images = listOf<String>("mask", "dummy")//Kotlin will print the name of the data and not the data
     )
 }
