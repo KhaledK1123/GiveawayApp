@@ -152,7 +152,8 @@ fun MainScreen() {
     val navController = rememberNavController()
     Scaffold(
         //topBar = { TopBar() },
-        bottomBar = { BottomNavigationBar(navController = navController) }
+        bottomBar = { BottomNavigationBar(navController = navController) },
+
     ) {
         Navigation(navController)
         //LazyDonationList(donations = DonoViewModel.donations)
