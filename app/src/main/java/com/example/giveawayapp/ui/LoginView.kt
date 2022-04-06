@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.giveawayapp.CreateAccountView
 import com.example.giveawayapp.ForgotPasswordView
-import com.example.giveawayapp.Profile
+import com.example.giveawayapp.Home
 import com.example.giveawayapp.viewmodel.LoginViewModel
 
 @Composable
@@ -144,7 +144,7 @@ fun LoginView(modifier: Modifier = Modifier, viewModel: LoginViewModel) {
 
             if(viewModel.successful() == true) {
 
-                context.startActivity(Intent(context, Profile::class.java))
+                context.startActivity(Intent(context, Home::class.java))
             }
 
         }) {
