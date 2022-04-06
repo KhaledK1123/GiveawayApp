@@ -142,6 +142,7 @@ fun LoginView(modifier: Modifier = Modifier, viewModel: LoginViewModel) {
 
         onClick = { viewModel.login(username, password)
 
+            //This allows the login button to traverse to Home page
             if(viewModel.successful() == true) {
 
                 context.startActivity(Intent(context, Home::class.java))
