@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,8 +27,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.giveawayapp.viewmodel.ForgotPasswordViewModel
+import com.example.giveawayapp.viewmodel.LoginViewModel
 
-class ForgotPassword : ComponentActivity() {
+class ForgotPasswordView : ComponentActivity() {
+
+    private val viewModel2: ForgotPasswordViewModel by viewModels()
+
     @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +46,7 @@ class ForgotPassword : ComponentActivity() {
 
                 SimpleText2("Create New Password")
 
-                SubmitButton()
+                SubmitButton(viewModel2 = viewModel2)
             }
         }
     }
@@ -59,53 +65,7 @@ fun SimpleText2(displayText: String) {
 }
 
 @Composable
-fun NewPassword(text: String) {
-    Text(
-        text = text,
-        style = TextStyle(
-            fontSize = 16.sp,
-            color = Color.Black
-        ),
-        modifier = Modifier
-            .paddingFromBaseline(top = 75.dp)
-            .padding(horizontal = 16.dp)
-            .fillMaxWidth()
-    )
-}
-
-@Composable
-fun ConfirmPassword(text: String) {
-    Text(
-        text = text,
-        style = TextStyle(
-            fontSize = 16.sp,
-            color = Color.Black
-        ),
-        modifier = Modifier
-            .paddingFromBaseline(top = 50.dp)
-            .padding(horizontal = 16.dp)
-            .fillMaxWidth()
-    )
-}
-
-fun NewPasswordInput(new_password: String, confirm_password: String): String {
-
-    var status: String = ""
-
-    if (new_password.equals("password") && confirm_password.equals("password")) {
-
-        status = "Confirmed"
-
-    } else {
-
-        status = "Deny"
-    }
-
-    return status
-}
-
-@Composable
-fun SubmitButton() {
+fun SubmitButton(modifier: Modifier = Modifier, viewModel2: ForgotPasswordViewModel) {
 
     val context = LocalContext.current
     Column(
@@ -149,11 +109,12 @@ fun SubmitButton() {
             modifier = Modifier
                 .padding(15.dp)
                 .fillMaxWidth(),
-            onClick = {
-                status =
-                    NewPasswordInput(newPasswordInput, confirmPasswordInput); context.startActivity(
-                Intent(context, MainActivity::class.java)
-            )
+
+            onClick = { viewModel2.forgotPassword(newPasswordInput, confirmPasswordInput)
+                if(viewModel2.successful() == true) {
+                context.startActivity(Intent(context, MainActivity::class.java))
+                }
+
             }) {
 
             Text(
@@ -165,7 +126,6 @@ fun SubmitButton() {
                 modifier = Modifier.padding(1.dp)
             )
         }
-        Text(text = "$status")
 
         //Calling CancelButton function
         CancelButton()

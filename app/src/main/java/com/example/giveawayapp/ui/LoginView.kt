@@ -19,8 +19,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.giveawayapp.CreateAccount
-import com.example.giveawayapp.ForgotPassword
+import com.example.giveawayapp.CreateAccountView
+import com.example.giveawayapp.ForgotPasswordView
 import com.example.giveawayapp.Profile
 import com.example.giveawayapp.viewmodel.LoginViewModel
 
@@ -36,29 +36,13 @@ fun LoginText(displayText: String) {
     )
 }
 
-//fun LoginInput(user_name: String, password: String): String {
-//
-//    val status: String
-//
-//    if (user_name.equals("John") && password.equals("password")) {
-//
-//        status = "Login Successful"
-//
-//    } else {
-//
-//        status = "Login Unsuccessful"
-//    }
-//
-//    return status
-//}
-
 @Composable
 fun ForgotPasswordButton() {
 
     val context = LocalContext.current
     TextButton(
         onClick = {
-            context.startActivity(Intent(context, ForgotPassword::class.java))
+            context.startActivity(Intent(context, ForgotPasswordView::class.java))
         },
         modifier = Modifier.absolutePadding(left = 235.dp)
     ) {
@@ -95,7 +79,7 @@ fun CreateAccountButton() {
                 val context = LocalContext.current
                 TextButton(
                     onClick = {
-                        context.startActivity(Intent(context, CreateAccount::class.java))
+                        context.startActivity(Intent(context, CreateAccountView::class.java))
                     },
 
                     ) {
@@ -149,49 +133,6 @@ fun LoginView(modifier: Modifier = Modifier, viewModel: LoginViewModel) {
 
     val context = LocalContext.current
     val backgroundColor = Color(0xFF673AB7)
-//        if (username == ("John") && password == ("password")) {
-//            Button(shape = RoundedCornerShape(10.dp),
-//                colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
-//                modifier = Modifier
-//                    .padding(15.dp)
-//                    .fillMaxWidth(),
-//
-//                onClick = {
-//                    status = LoginInput(username, password); context.startActivity(
-//                    Intent(context, CreateAccount::class.java)
-//                )
-//                }) {
-//
-//                Text(
-//                    text = "Login",
-//                    textAlign = TextAlign.Center,
-//                    style = TextStyle(
-//                        fontSize = 20.sp, fontWeight = FontWeight.Bold
-//                    ),
-//                    modifier = Modifier.padding(1.dp)
-//                )
-//            }
-//        } else {
-//            Button(shape = RoundedCornerShape(10.dp),
-//                colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
-//                modifier = Modifier
-//                    .padding(15.dp)
-//                    .fillMaxWidth(),
-//
-//                onClick = {
-//                    status = LoginInput(username, password)
-//                }) {
-//
-//                Text(
-//                    text = "Login",
-//                    textAlign = TextAlign.Center,
-//                    style = TextStyle(
-//                        fontSize = 20.sp, fontWeight = FontWeight.Bold
-//                    ),
-//                    modifier = Modifier.padding(1.dp)
-//                )
-//            }
-//        }
 
     Button(shape = RoundedCornerShape(10.dp),
         colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
