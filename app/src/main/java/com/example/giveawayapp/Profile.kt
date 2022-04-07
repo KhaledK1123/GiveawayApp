@@ -5,8 +5,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -14,10 +17,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
@@ -32,7 +40,7 @@ class Profile : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
 
-            ProfileScreen()
+            //ProfileScreen()
         }
     }
 }
@@ -128,22 +136,18 @@ fun Button(shape: RoundedCornerShape, colors: ButtonColors, modifier: Modifier,
 @Composable
 fun ProfileScreen() {
     Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top,
         modifier = Modifier
             .fillMaxSize()
             .background(colorResource(id = R.color.white))
-            .wrapContentSize(Alignment.Center)
+            .wrapContentSize(Alignment.TopCenter)
     ) {
-        Text(
-            text = "Profile View",
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 25.sp
-        )
-        SimpleText4("Donate Item")
+        //SimpleText2("Donate Item")
 
-        SubmitButton2()
+        //SubmitButton2()
+
+        ProfileSection()
     }
 }
 @Preview(showBackground = true)
@@ -151,6 +155,140 @@ fun ProfileScreen() {
 fun ProfileScreenPreview() {
     ProfileScreen()
 }
+
+@Composable
+fun ProfileSection(){
+    Column(Modifier.fillMaxWidth()) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp)
+        ) {
+            RoundImage(
+                image = painterResource(id = R.drawable.img2),
+                modifier = Modifier
+                    .size(100.dp)
+                    .weight(3f)
+            )
+            Spacer(modifier = Modifier.width(16.dp))
+            StatSection(modifier = Modifier.weight(7f))
+        }
+        Spacer(modifier = Modifier.height(10.dp))
+        ProfileDescription(
+            displayName = "Full Name",
+            username = "Sample Username",
+            email = "email123@gmail.com",
+            address = "12345 Address Ave, Winchester, CA, 92596",
+            donationCount = 18
+        )
+    }
+}
+@Composable
+fun RoundImage(
+    image: Painter,
+    modifier: Modifier = Modifier
+){
+    Image(
+        painter = image,
+        contentDescription = null,
+        modifier = modifier
+            .aspectRatio(1f, matchHeightConstraintsFirst = true)
+            .border(
+                width = 1.dp,
+                color = Color.LightGray,
+                shape = CircleShape
+            )
+            .padding(3.dp)
+            .clip(CircleShape)
+    )
+}
+@Composable
+fun StatSection(modifier: Modifier = Modifier){
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceAround,
+        modifier = modifier
+    ) {
+        ProfileStat(numberText = "18", text = "Donations")
+        ProfileStat(numberText = "346", text = "Items Received")
+//        ProfileStat(numberText = "368", text = "Following")
+    }
+}
+@Composable
+fun ProfileStat(
+    numberText: String,
+    text: String,
+    modifier: Modifier = Modifier
+){
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+    ) {
+        Text(
+            text = numberText,
+            style = MaterialTheme.typography.body1,
+            fontSize = 20.sp
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(text = text)
+    }
+}
+
+@Composable
+fun ProfileDescription(
+    displayName: String,
+    username: String,
+    email: String,
+    address: String,
+    donationCount: Int
+){
+    val letterSpacing = 0.5.sp
+    val lineHeight = 20.sp
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp)
+    ) {
+        Text(
+            text = displayName,
+            style = MaterialTheme.typography.body1,
+            fontWeight = FontWeight.Bold,
+            letterSpacing = letterSpacing,
+            lineHeight = lineHeight
+        )
+        Text(
+            text = username,
+            style = MaterialTheme.typography.body1,
+            letterSpacing = letterSpacing,
+            lineHeight = lineHeight
+        )
+        Text(
+            text = email,
+            style = MaterialTheme.typography.body1,
+            color = Color(0xFF3D3D91),
+            letterSpacing = letterSpacing,
+            lineHeight = lineHeight
+        )
+        Text(
+            text = address,
+            style = MaterialTheme.typography.body1,
+            color = Color(0xFF3D3D91),
+            letterSpacing = letterSpacing,
+            lineHeight = lineHeight
+        )
+        Text(
+            text = buildAnnotatedString {
+                    append("Donated $donationCount times!")
+                },
+                letterSpacing = letterSpacing,
+                lineHeight = lineHeight
+            )
+
+    }
+}
+
 
 
 /* Lines 157-279: IF PW change/update is NEEDED, to connect to an API (otherwise,

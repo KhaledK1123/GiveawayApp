@@ -2,11 +2,15 @@ package com.example.giveawayapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -16,6 +20,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
@@ -24,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.giveawayapp.ui.theme.Shapes
 import com.example.giveawayapp.viewmodel.CreateAccountViewModel
 
 class CreateAccountView : ComponentActivity() {
@@ -52,7 +58,7 @@ fun SimpleText3(displayText: String) {
     Text(
         color = Color(0xFF673AB7),
         text = displayText,
-        fontFamily = FontFamily.Serif,
+        style = MaterialTheme.typography.h1,
         fontSize = 35.sp,
     )
 }
@@ -83,82 +89,132 @@ fun CreateAccountButton1(modifier: Modifier = Modifier, viewModel1: CreateAccoun
         TextField(
             value = fullName,
             onValueChange = { fullName = it },
-            label = { Text("Full Name") },
+            label = {
+                Text(
+                    text = "Full Name",
+                    style = MaterialTheme.typography.subtitle1
+            ) },
+
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
                 .fillMaxWidth()
+                .clip(Shapes.medium)
+                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium),
+
         )
 
         TextField(
             value = username,
             onValueChange = { username = it },
-            label = { Text("Username") },
+            label = { Text(
+                text= "Username",
+                style = MaterialTheme.typography.subtitle1
+            ) },
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
                 .fillMaxWidth()
+                .clip(Shapes.medium)
+                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
         )
 
         TextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text("Email") },
+            label = { Text(
+                text = "Email",
+                style = MaterialTheme.typography.subtitle1
+            ) },
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
                 .fillMaxWidth()
+                .clip(Shapes.medium)
+                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
         )
 
         TextField(
             value = address,
             onValueChange = { address = it },
-            label = { Text("Address") },
+            label = { Text(
+                text = "Address",
+                style = MaterialTheme.typography.subtitle1
+            ) },
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
                 .fillMaxWidth()
+                .clip(Shapes.medium)
+                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
         )
 
         TextField(
             value = city,
             onValueChange = { city = it },
-            label = { Text("City") },
+            label = { Text(
+                text = "City",
+                style = MaterialTheme.typography.subtitle1
+            ) },
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
                 .fillMaxWidth()
+                .clip(Shapes.medium)
+                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
         )
 
         TextField(
             value = state,
             onValueChange = { state = it },
-            label = { Text("State") },
+            label = { Text(
+                text = "State",
+                style = MaterialTheme.typography.subtitle1
+            ) },
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
                 .fillMaxWidth()
+                .clip(Shapes.medium)
+                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
         )
 
         TextField(
             value = zipCode,
             onValueChange = { zipCode = it },
-            label = { Text("Zip Code") },
+            label = { Text(
+                text = "Zip Code",
+                style = MaterialTheme.typography.subtitle1
+            ) },
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
                 .fillMaxWidth()
+                .clip(Shapes.medium)
+                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
         )
 
         TextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text("Password") },
+            label = { Text(
+                text = "Password",
+                style = MaterialTheme.typography.subtitle1
+            ) },
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
                 .fillMaxWidth()
+                .clip(Shapes.medium)
+                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
         )
 
         TextField(
             value = confirmPassword,
             onValueChange = { confirmPassword = it },
-            label = { Text("Confirm Password") },
+            label = { Text(
+                text = "Confirm Password",
+                style = MaterialTheme.typography.subtitle1
+            ) },
             modifier = Modifier
                 .padding(top = 5.dp, bottom = 10.dp, start = 15.dp, end = 15.dp)
                 .fillMaxWidth()
+                .clip(Shapes.medium)
+                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
+
+
         )
 
         val backgroundColor = Color(0xFF673AB7)
@@ -167,22 +223,23 @@ fun CreateAccountButton1(modifier: Modifier = Modifier, viewModel1: CreateAccoun
             colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
             modifier = Modifier
                 .padding(top = 5.dp, start = 15.dp, end = 15.dp)
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .clip(Shapes.medium),
 
             onClick = {viewModel1.createAccount(fullName,username,email,address,city
                 ,state,zipCode,password,confirmPassword)
                 if(viewModel1.successful() == true) {
                     context.startActivity(Intent(context, MainActivity::class.java))
+                    Toast.makeText(context,"Account Created!",Toast.LENGTH_LONG).show()
                 }
             })
         {
             Text(
                 text = "Create Account",
                 textAlign = TextAlign.Center,
-                style = TextStyle(
-                    fontSize = 20.sp, fontWeight = FontWeight.Bold
-                ),
-                modifier = Modifier.padding(1.dp)
+                style = MaterialTheme.typography.button,
+                modifier = Modifier
+                    .padding(1.dp)
             )
 
         }
@@ -204,10 +261,11 @@ fun CancelButton() {
         TextButton(
             onClick = {
                 context.startActivity(Intent(context, MainActivity::class.java))
+                Toast.makeText(context,"Returning to Login Screen....",Toast.LENGTH_LONG).show()
             },
 
             ) {
-            Text("Cancel", fontSize = 15.sp, color = Color(0xFF673AB7))
+            Text("Cancel", fontSize = 15.sp, style = MaterialTheme.typography.button, color = Color(0xFF673AB7))
         }
     }
 }

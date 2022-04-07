@@ -6,12 +6,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -19,6 +17,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
@@ -27,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.giveawayapp.ui.theme.Shapes
 import com.example.giveawayapp.viewmodel.ForgotPasswordViewModel
 import com.example.giveawayapp.viewmodel.LoginViewModel
 
@@ -58,7 +58,7 @@ fun SimpleText2(displayText: String) {
     Text(
         color = Color(0xFF673AB7),
         text = displayText,
-        fontFamily = FontFamily.Serif,
+        style =MaterialTheme.typography.h1,
         fontSize = 35.sp,
         modifier = Modifier.padding(top = 175.dp)
     )
@@ -88,6 +88,8 @@ fun SubmitButton(modifier: Modifier = Modifier, viewModel2: ForgotPasswordViewMo
             modifier = Modifier
                 .padding(top = 35.dp, bottom = 25.dp, start = 15.dp, end = 15.dp)
                 .fillMaxWidth()
+                .clip(Shapes.medium)
+                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
         )
         TextField(
             value = confirmPasswordInput,
@@ -96,6 +98,8 @@ fun SubmitButton(modifier: Modifier = Modifier, viewModel2: ForgotPasswordViewMo
             modifier = Modifier
                 .padding(bottom = 10.dp, start = 15.dp, end = 15.dp)
                 .fillMaxWidth()
+                .clip(Shapes.medium)
+                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
         )
 
         var status by rememberSaveable {
@@ -118,11 +122,9 @@ fun SubmitButton(modifier: Modifier = Modifier, viewModel2: ForgotPasswordViewMo
             }) {
 
             Text(
-                text = "Login",
+                text = "Reset",
                 textAlign = TextAlign.Center,
-                style = TextStyle(
-                    fontSize = 20.sp, fontWeight = FontWeight.Bold
-                ),
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(1.dp)
             )
         }

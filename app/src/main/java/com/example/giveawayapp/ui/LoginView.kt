@@ -1,6 +1,8 @@
 package com.example.giveawayapp.ui
 
 import android.content.Intent
+import android.widget.Toast
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -11,6 +13,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
@@ -22,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import com.example.giveawayapp.CreateAccountView
 import com.example.giveawayapp.ForgotPasswordView
 import com.example.giveawayapp.Home
+import com.example.giveawayapp.ui.theme.Shapes
 import com.example.giveawayapp.viewmodel.LoginViewModel
 
 @Composable
@@ -30,9 +35,9 @@ fun LoginText(displayText: String) {
     Text(
         color = Color(0xFF673AB7),
         text = displayText,
-        fontFamily = FontFamily.Serif,
-        fontSize = 45.sp,
-        modifier = Modifier.padding(top = 175.dp)
+        style= MaterialTheme.typography.h2,
+        modifier = Modifier.padding(top = 175.dp),
+        fontSize = 40.sp,
     )
 }
 
@@ -46,7 +51,7 @@ fun ForgotPasswordButton() {
         },
         modifier = Modifier.absolutePadding(left = 235.dp)
     ) {
-        Text("Forgot Password", fontSize = 15.sp, color = Color(0xFF673AB7))
+        Text("Forgot Password", style = MaterialTheme.typography.subtitle1, color = Color(0xFF673AB7))
     }
 }
 
@@ -63,7 +68,7 @@ fun CreateAccountButton() {
             Arrangement.Bottom
         ) {
 
-            Text(text = "Don't have an account?", fontSize = 18.sp)
+            Text(text = "Don't have an account?", style = MaterialTheme.typography.h6)
         }
 
         Row() {
@@ -83,7 +88,7 @@ fun CreateAccountButton() {
                     },
 
                     ) {
-                    Text("Sign Up", fontSize = 18.sp, color = Color(0xFF673AB7))
+                    Text("Sign Up", style = MaterialTheme.typography.h6, color = Color(0xFF673AB7))
                 }
             }
         }
@@ -109,18 +114,22 @@ fun LoginView(modifier: Modifier = Modifier, viewModel: LoginViewModel) {
         TextField(
             value = username,
             onValueChange = { username = it },
-            label = { Text("User Name") },
+            label = { Text("User Name", style = MaterialTheme.typography.subtitle1) },
             modifier = Modifier
                 .padding(top = 35.dp, bottom = 25.dp, start = 15.dp, end = 15.dp)
                 .fillMaxWidth()
+                .clip(Shapes.medium)
+                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
         )
         TextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text("Password") },
+            label = { Text("Password", style = MaterialTheme.typography.subtitle1) },
             modifier = Modifier
                 .padding(bottom = 10.dp, start = 15.dp, end = 15.dp)
                 .fillMaxWidth()
+                .clip(Shapes.medium)
+                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
         )
 
     }
@@ -146,6 +155,7 @@ fun LoginView(modifier: Modifier = Modifier, viewModel: LoginViewModel) {
             if(viewModel.successful() == true) {
 
                 context.startActivity(Intent(context, Home::class.java))
+                Toast.makeText(context,"Login Successful!", Toast.LENGTH_LONG).show()
             }
 
         }) {
@@ -153,9 +163,7 @@ fun LoginView(modifier: Modifier = Modifier, viewModel: LoginViewModel) {
         Text(
             text = "Login",
             textAlign = TextAlign.Center,
-            style = TextStyle(
-                fontSize = 20.sp, fontWeight = FontWeight.Bold
-            ),
+            style = MaterialTheme.typography.h5,
             modifier = Modifier.padding(1.dp)
         )
     }
