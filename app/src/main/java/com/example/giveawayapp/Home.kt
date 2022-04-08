@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
@@ -28,6 +29,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.giveawayapp.itemOperations.data.model.Donation
+import com.example.giveawayapp.itemOperations.data.model.DummyDonation
 import com.example.giveawayapp.itemOperations.ui.ItemCard
 import com.example.giveawayapp.itemOperations.ui.ItemClickable
 
@@ -88,19 +90,18 @@ class Home : ComponentActivity() {
 @Composable
 fun HomeScreen() {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(colorResource(id = R.color.white))
-            .wrapContentSize(Alignment.Center)
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = "Home View",
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 25.sp
-        )
+        SimpleText5(displayText = "Donations")
+        Column(
+            horizontalAlignment = Alignment.End
+        ) {
+            androidx.compose.material.Button(onClick = { /*TODO*/ }) {
+                Text(text = "Create Post")
+            }
+        }
+        Donations(donations = DummyDonation.dummyList)
     }
 }
 @Composable

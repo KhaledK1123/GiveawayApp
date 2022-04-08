@@ -38,13 +38,8 @@ class Social : ComponentActivity() {
 @Composable
 fun SocialScreen() {
 
-    Column(
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        SimpleText5(displayText = "Donations")
-        Donations(donations = dummyList)
-    }
+Text(text = "Social View",
+style = MaterialTheme.typography.h1)
 
 
 

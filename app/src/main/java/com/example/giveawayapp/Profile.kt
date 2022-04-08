@@ -177,10 +177,10 @@ fun ProfileSection(){
         }
         Spacer(modifier = Modifier.height(10.dp))
         ProfileDescription(
-            displayName = "Full Name",
-            username = "Sample Username",
-            email = "email123@gmail.com",
-            address = "12345 Address Ave, Winchester, CA, 92596",
+            displayName = "John Adams",
+            username = "AdamsApple74",
+            email = "JohnnyBoy74@gmail.com",
+            address = "47129 Cabron Ave, Winchester, CA, 92596",
             donationCount = 18
         )
         Column(
@@ -232,7 +232,7 @@ fun StatSection(modifier: Modifier = Modifier){
     ) {
         ProfileStat(numberText = "18", text = "Donations")
         ProfileStat(numberText = "346", text = "Items Received")
-//        ProfileStat(numberText = "368", text = "Following")
+        ProfileStat(numberText = "1023", text = "Flair")
     }
 }
 @Composable
