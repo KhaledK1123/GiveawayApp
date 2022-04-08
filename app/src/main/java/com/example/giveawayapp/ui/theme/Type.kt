@@ -93,8 +93,8 @@ val Typography = Typography(
     ),
     caption = TextStyle(
         fontFamily = Roboto,
-        fontWeight = FontWeight.W300,
-        fontSize = 12.sp
+        fontWeight = FontWeight.Bold,
+        fontSize = 14.sp
     ),
     overline = TextStyle(
         fontFamily = Roboto,

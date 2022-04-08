@@ -5,9 +5,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,9 +18,12 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
-
+import com.example.giveawayapp.itemOperations.data.model.Donation
+import com.example.giveawayapp.itemOperations.data.model.DummyDonation.dummy
+import com.example.giveawayapp.itemOperations.data.model.DummyDonation.dummyList
+import com.example.giveawayapp.itemOperations.ui.ItemCard
 
 
 class Social : ComponentActivity() {
@@ -33,24 +37,46 @@ class Social : ComponentActivity() {
 
 @Composable
 fun SocialScreen() {
+
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(colorResource(id = R.color.white))
-            .wrapContentSize(Alignment.Center)
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = "Social View",
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 25.sp
-        )
+        SimpleText5(displayText = "Donations")
+        Donations(donations = dummyList)
     }
+
+
+
 }
 @Preview(showBackground = true)
 @Composable
 fun SocialScreenPreview() {
     SocialScreen()
+}
+
+@Composable
+fun Donations(donations: List<Donation>) {
+    LazyColumn(Modifier.padding(40.dp)) {
+        items(donations) { donation ->
+            ItemCard(donation)
+        }
+    }
+}
+
+@Composable
+fun SimpleText5(displayText: String) {
+
+    Text(
+        color = Color(0xFF673AB7),
+        text = displayText,
+        style = MaterialTheme.typography.h1,
+        fontSize = 35.sp
+    )
+}
+
+@Composable
+fun RequestItem(choice: Donation) {
+
+
 }

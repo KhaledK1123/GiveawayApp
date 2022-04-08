@@ -138,7 +138,7 @@ fun Button(shape: RoundedCornerShape, colors: ButtonColors, modifier: Modifier,
 fun ProfileScreen() {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top,
+        //verticalArrangement = Arrangement.Top,
         modifier = Modifier
             .fillMaxSize()
             .background(colorResource(id = R.color.white))
@@ -183,6 +183,25 @@ fun ProfileSection(){
             address = "12345 Address Ave, Winchester, CA, 92596",
             donationCount = 18
         )
+        Column(
+
+            modifier = Modifier
+                .fillMaxHeight()
+                .padding(bottom = 75.dp),
+            Arrangement.Bottom,
+            Alignment.CenterHorizontally
+        ) {
+
+            val context = LocalContext.current
+            TextButton(
+                onClick = {
+                    context.startActivity(Intent(context, Home::class.java))
+                },
+
+                ) {
+                Text("Edit Profile", style = MaterialTheme.typography.button, color = Color(0xFF673AB7))
+            }
+        }
     }
 }
 @Composable
