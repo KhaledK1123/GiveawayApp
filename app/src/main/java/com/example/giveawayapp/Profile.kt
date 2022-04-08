@@ -67,7 +67,8 @@ fun DonateItemInput(donate_item: String, confirm_donation_complete: String): Str
 
     } else {
 
-        status = "Please indicate the next donation you'd like to make"
+        status = "Please indicate the next donation you'd like to make, " +
+                "or return to the Home screen"
     }
 
     return status
