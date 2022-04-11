@@ -7,7 +7,7 @@ import retrofit2.http.GET
 
 interface ApiInterface {
 
-    @GET("donations/")
+    @GET ("https://private-15a842-new4u.apiary-mock.com/donations")
     suspend fun getDonations(): DonationResponse
 
 }

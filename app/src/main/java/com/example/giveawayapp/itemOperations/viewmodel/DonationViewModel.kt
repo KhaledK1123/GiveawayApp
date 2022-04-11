@@ -8,13 +8,12 @@ import kotlinx.coroutines.launch
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import com.example.giveawayapp.itemOperations.data.model.Donation
-import com.example.giveawayapp.itemOperations.data.network.RichardsRetrofitHelper
+import com.example.giveawayapp.itemOperations.data.network.DonationsApiClient
 import com.example.giveawayapp.itemOperations.data.repository.DonationRepository
 
 class DonationViewModel:ViewModel() {
 
-    private val apiService = RichardsRetrofitHelper.getDonationService()
-    private lateinit var repository: DonationRepository
+    private val apiService = DonationsApiClient.service
 
     var donationList: List<Donation> by mutableStateOf(listOf())
 
@@ -24,12 +23,12 @@ class DonationViewModel:ViewModel() {
     //Why does Mayur use it?
 
     init {
-        fetchDonationViewModel()
+        fetchDonations()
     }
 
-    private fun fetchDonationViewModel() {
+    private fun fetchDonations() {
 
-        repository = DonationRepository(apiService)
+        var repository = DonationRepository(apiService)
         viewModelScope.launch {
             var response = repository.fetchDonationList()
             when(response)
@@ -47,8 +46,8 @@ class DonationViewModel:ViewModel() {
         }
     }
 
-    fun itemClicked(item:Donation)
-    {
-        clickedItem=item
-    }
+//    fun itemClicked(item:Donation)
+//    {
+//        clickedItem=item
+//    }
 }

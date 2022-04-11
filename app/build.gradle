@@ -47,17 +47,12 @@ android {
 
 dependencies {
 
-    def nav_version = "2.4.1"
-
-    implementation("androidx.navigation:navigation-compose:$nav_version")
-    implementation 'androidx.navigation:navigation-runtime-ktx:2.4.1'
 
 //Retrofit Tools
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3"
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
-    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
-
+ 
     implementation 'com.google.android.material:material:1.5.0'
 
 
@@ -72,4 +67,31 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+
+    //Navigation
+    def nav_version = "2.4.2"
+    implementation 'androidx.navigation:navigation-runtime-ktx:2.4.1'
+    // Java language implementation
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+    // Kotlin
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    // Feature module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+    // Testing Navigation
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+    // Jetpack Compose Integration
+    implementation "androidx.navigation:navigation-compose:$nav_version"
+
+    //Retrofit Tools
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+    //Coil to render simple images
+    //implementation("io.coil-kt:coil-compose:2.0.0-rc02")
+    implementation 'com.google.accompanist:accompanist-coil:0.13.0'
+
 }

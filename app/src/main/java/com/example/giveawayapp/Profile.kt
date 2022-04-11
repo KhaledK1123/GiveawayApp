@@ -566,7 +566,7 @@ fun SubmitButton >2() {
 
 /* Fixing Line 150 errors (1-2, depending): function needed, to balance
 - @ end of last composable */
-fun Button(shape: RoundedCornerShape, colors: ButtonColors, modifier: Modifier,
+'fun Button(shape: RoundedCornerShape, colors: ButtonColors, modifier: Modifier,
            onClick: () -> Unit) {
  */
 

@@ -1,60 +1,53 @@
 package com.example.giveawayapp.itemOperations.ui
 
-import android.os.Bundle
-import android.util.Log
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.lifecycle.ViewModel
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
-import com.example.giveawayapp.itemOperations.data.model.Donation
-import com.example.giveawayapp.itemOperations.data.network.ApiInterface
+import com.example.giveawayapp.itemOperations.data.model.DonationResponse
+import com.example.giveawayapp.itemOperations.data.model.DummyDonation
+import com.example.giveawayapp.itemOperations.data.network.DonationsApiClient
+import com.example.giveawayapp.itemOperations.data.repository.DonationRepository
 import com.example.giveawayapp.itemOperations.viewmodel.DonationViewModel
-import com.example.giveawayapp.ui.theme.GiveawayAppTheme
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import kotlinx.coroutines.launch
 
 @Composable
 fun ListReusable (navController: NavController,
     /*This could be abstracted:*/
     viewModel: DonationViewModel) {
 
-    DonationList(navController = navController,
-        donationList = viewModel.donationList,
-        onItemClicked = viewModel::itemClicked
-        )
+    DonationList()
 
 }
 
 @Composable
-fun DonationList (
-    navController: NavController,
-    donationList: List<Donation>,
-    onItemClicked: (item:Donation) -> Unit
-) {
+fun DonationList() {
+    val donationList = DonationViewModel().donationList
     var listState = rememberLazyListState()
-    var donationList =
     LazyColumn(state = listState) {
 
-        itemsIndexed(donationList) {index, item ->
-            ItemClickable(
-                navController = navController,
-                donation = donationList[index],
-                onItemClicked
+        items(donationList.size) {index ->
+            ItemCard(
+                donation = donationList[index]
             )
         }
     }
 }
 
-
+//@Preview
+//@Composable
+//fun DonationCardPreview() {
+//
+//    val coroutineScope = rememberCoroutineScope()
+//    val client = DonationsApiClient.service
+//    val repository = DonationRepository(client)
+//    coroutineScope { val response = repository.fetchDonationList() }
+//    ItemCard()
+////ItemCard(DummyDonation.dummy)
+//}
+//
 
