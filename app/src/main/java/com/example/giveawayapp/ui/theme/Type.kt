@@ -1,5 +1,4 @@
 package com.example.giveawayapp.ui.theme
-
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -40,12 +39,12 @@ val Typography = Typography(
     h1 = TextStyle(
         fontFamily = Roboto,
         fontWeight = FontWeight.W600,
-        fontSize = 42.sp
+        fontSize = 45.sp
     ),
     h2 = TextStyle(
         fontFamily = Roboto,
         fontWeight = FontWeight.W500,
-        fontSize = 28.sp
+        fontSize = 35.sp
     ),
     h3 = TextStyle(
         fontFamily = Roboto,
@@ -70,7 +69,7 @@ val Typography = Typography(
     subtitle1 = TextStyle(
         fontFamily = Roboto,
         fontWeight = FontWeight.W400,
-        fontSize = 16.sp
+        fontSize = 18.sp
     ),
     subtitle2 = TextStyle(
         fontFamily = Roboto,
@@ -89,7 +88,7 @@ val Typography = Typography(
     button = TextStyle(
         fontFamily = Roboto,
         fontWeight = FontWeight.W500,
-        fontSize = 14.sp
+        fontSize = 20.sp
     ),
     caption = TextStyle(
         fontFamily = Roboto,

@@ -2,12 +2,15 @@ package com.example.giveawayapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -20,15 +23,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.giveawayapp.ui.theme.Shapes
 import com.example.giveawayapp.viewmodel.ForgotPasswordViewModel
-import com.example.giveawayapp.viewmodel.LoginViewModel
 
 class ForgotPasswordView : ComponentActivity() {
 
@@ -40,7 +40,6 @@ class ForgotPasswordView : ComponentActivity() {
         setContent {
             Column(
                 modifier = Modifier.fillMaxSize(),
-                //verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
 
@@ -77,35 +76,50 @@ fun SubmitButton(modifier: Modifier = Modifier, viewModel2: ForgotPasswordViewMo
     )
     {
 
-
+        var username by rememberSaveable { mutableStateOf("") }
         var newPasswordInput by rememberSaveable { mutableStateOf("") }
         var confirmPasswordInput by rememberSaveable { mutableStateOf("") }
+        var isError by rememberSaveable { mutableStateOf(false) }
 
         TextField(
-            value = newPasswordInput,
-            onValueChange = { newPasswordInput = it },
-            label = { Text("New Password") },
+            value = username,
+            isError = false,
+            onValueChange = { username = it },
+            label = { Text(if(isError)"User Name*" else("User Name"),
+                style = MaterialTheme.typography.subtitle1) },
             modifier = Modifier
                 .padding(top = 35.dp, bottom = 25.dp, start = 15.dp, end = 15.dp)
                 .fillMaxWidth()
                 .clip(Shapes.medium)
-                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
+        )
+
+        TextField(
+            value = newPasswordInput,
+            onValueChange = { newPasswordInput = it },
+            isError = false,
+            label = { Text(if(isError)"New Password*" else("New Passowrd"), style = MaterialTheme.typography.subtitle1) },
+            visualTransformation = PasswordVisualTransformation(),
+            modifier = Modifier
+                .padding(bottom = 25.dp, start = 15.dp, end = 15.dp)
+                .fillMaxWidth()
+                .clip(Shapes.medium),
+
+            // .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
         )
         TextField(
             value = confirmPasswordInput,
             onValueChange = { confirmPasswordInput = it },
-            label = { Text("Confirm Password") },
+            isError =  false,
+            label = { Text(if(isError)"Confirm Password*" else("Confirm Password"), style = MaterialTheme.typography.subtitle1)  },
+            visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier
                 .padding(bottom = 10.dp, start = 15.dp, end = 15.dp)
                 .fillMaxWidth()
                 .clip(Shapes.medium)
-                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
+            //.border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
         )
 
-        var status by rememberSaveable {
-            mutableStateOf("")
-
-        }
+        isError = username.isEmpty() or newPasswordInput.isEmpty() or confirmPasswordInput.isEmpty()
 
         val backgroundColor = Color(0xFF673AB7)
         Button(shape = RoundedCornerShape(10.dp),
@@ -114,15 +128,21 @@ fun SubmitButton(modifier: Modifier = Modifier, viewModel2: ForgotPasswordViewMo
                 .padding(15.dp)
                 .fillMaxWidth(),
 
-            onClick = { viewModel2.forgotPassword(newPasswordInput, confirmPasswordInput)
-                if(viewModel2.successful() == true) {
-                context.startActivity(Intent(context, MainActivity::class.java))
+            onClick = {
+                if (!isError) {
+                    viewModel2.forgotPassword(newPasswordInput, confirmPasswordInput)
+                    context.startActivity(Intent(context, MainActivity::class.java))
+                    Toast.makeText(context, "Password Updated!", Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    Toast.makeText(context, "Error! - Please Enter Your New Password", Toast.LENGTH_SHORT).show()
                 }
 
             }) {
 
             Text(
                 text = "Reset",
+                color = Color.White,
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(1.dp)
