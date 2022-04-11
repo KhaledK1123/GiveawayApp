@@ -114,6 +114,7 @@ fun SocialScreen() {
 
                 onClick = {
 
+                    //Traverses to the Home page
                     Toast.makeText(context, "Item Search Posted", Toast.LENGTH_SHORT).show()
                     context.startActivity(Intent(context, Home::class.java))
 
