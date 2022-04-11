@@ -35,13 +35,21 @@ class CreateAccountView : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                SimpleText3("Create Account")
+            Scaffold(
+                topBar = {
 
-                CreateAccountButton1(viewModel1 = viewModel1)
+                    TopAppBar(
+                        backgroundColor = MaterialTheme.colors.primary,
+                        title = {Text("Create Account")})
+                }
+            )
+            {
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    CreateAccountButton1(viewModel1 = viewModel1)
+                }
             }
         }
     }

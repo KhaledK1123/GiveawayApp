@@ -1,14 +1,12 @@
 package com.example.giveawayapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -23,6 +21,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.*
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -32,6 +33,7 @@ import com.example.giveawayapp.itemOperations.data.model.Donation
 import com.example.giveawayapp.itemOperations.data.model.DummyDonation
 import com.example.giveawayapp.itemOperations.ui.ItemCard
 import com.example.giveawayapp.itemOperations.ui.ItemClickable
+import com.example.giveawayapp.ui.theme.Shapes
 
 class Home : ComponentActivity() {
     @ExperimentalFoundationApi
@@ -89,19 +91,31 @@ class Home : ComponentActivity() {
 //}
 @Composable
 fun HomeScreen() {
-    Column(
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        SimpleText5(displayText = "Donations")
-        Column(
-            horizontalAlignment = Alignment.End
-        ) {
-            androidx.compose.material.Button(onClick = { /*TODO*/ }) {
-                Text(text = "Create Post")
-            }
+    Scaffold(
+        topBar = {
+
+            TopAppBar(
+                backgroundColor = MaterialTheme.colors.primary,
+                title = {Text("Donations")})
         }
-        Donations(donations = DummyDonation.dummyList)
+    ) {
+        Column(
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Column(
+            ) {
+                val context = LocalContext.current
+                Button(onClick = { context.startActivity(Intent(context, DonationCreate::class.java))},
+                        modifier = Modifier
+                        .padding(top = 2.dp, start = 15.dp, end = 15.dp)
+                        .fillMaxWidth()
+                        .clip(Shapes.medium)) {
+                        Text(text = "Create Post")
+                }
+            }
+            Donations(donations = DummyDonation.dummyList)
+        }
     }
 }
 @Composable

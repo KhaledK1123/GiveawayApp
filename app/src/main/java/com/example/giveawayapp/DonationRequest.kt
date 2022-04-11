@@ -35,18 +35,18 @@ import com.example.giveawayapp.itemOperations.ui.ItemCard
 import com.example.giveawayapp.ui.theme.Shapes
 
 
-class Social : ComponentActivity() {
+class DonationRequest : ComponentActivity() {
     @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainScreen()
+            DonationRequestButton()
         }
     }
 }
 
 @Composable
-fun SocialScreen() {
+fun DonationRequestButton() {
 
     var request_box by rememberSaveable { mutableStateOf("") }
     var item_description by rememberSaveable { mutableStateOf("") }
@@ -59,7 +59,7 @@ fun SocialScreen() {
 
             TopAppBar(
                 backgroundColor = MaterialTheme.colors.primary,
-                title = {Text("Community Post")})
+                title = { Text("Request Item") })
         }
     )
     {
@@ -67,7 +67,8 @@ fun SocialScreen() {
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
-            Text(text = "Looking for an item? Let others know what you need!",
+            Text(
+                text = "Would you like this item? Let the Owner know why you need it!",
                 color = MaterialTheme.colors.primary,
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.h6,
@@ -75,20 +76,6 @@ fun SocialScreen() {
             )
 
             Spacer(modifier = Modifier.height(18.dp))
-
-            TextField(
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth(),
-                value = request_box,
-                onValueChange = { request_box = it },
-                label = { Text(text = "Request Item") },
-                colors = TextFieldDefaults.textFieldColors(
-                    focusedIndicatorColor = Color(0xFF673AB7),
-                    unfocusedIndicatorColor = Color.Transparent
-                ),
-                shape = RoundedCornerShape(8.dp),
-            )
 
             TextField(
                 modifier = Modifier
@@ -117,7 +104,7 @@ fun SocialScreen() {
                 onClick = {
 
                     //Traverses to the Home page
-                    Toast.makeText(context, "Item Search Posted", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Item Request Has Been Sent!", Toast.LENGTH_SHORT).show()
                     context.startActivity(Intent(context, Home::class.java))
 
                 }) {
@@ -131,24 +118,4 @@ fun SocialScreen() {
             }
         }
     }
-}
-
-@Composable
-fun Donations(donations: List<Donation>) {
-    LazyColumn(Modifier.padding(47.dp)) {
-        items(donations) { donation ->
-            ItemCard(donation)
-        }
-    }
-}
-
-@Composable
-fun SimpleText5(displayText: String) {
-
-    Text(
-        color = Color(0xFF673AB7),
-        text = displayText,
-        style = MaterialTheme.typography.h1,
-        fontSize = 35.sp
-    )
 }

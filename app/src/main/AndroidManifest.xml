@@ -12,14 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GiveawayApp">
         <activity
-            android:name=".itemOperations.MainActivity"
-            android:exported="false"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.GiveawayApp" />
-        <activity
             android:name=".Profile"
             android:exported="false"
             android:label="ProfileScreen"
+            android:theme="@style/Theme.GiveawayApp" />
+        <activity
+            android:name=".EditProfileView"
+            android:exported="false"
+            android:label="EditProfileViewScreen"
+            android:theme="@style/Theme.GiveawayApp" />
+        <activity
+            android:name=".DonationCreate"
+            android:exported="false"
+            android:label="DonationCreateScreen"
+            android:theme="@style/Theme.GiveawayApp" />
+        <activity
+            android:name=".DonationRequest"
+            android:exported="false"
+            android:label="DonationRequestScreen"
             android:theme="@style/Theme.GiveawayApp" />
         <activity
             android:name=".ForgotPasswordView"

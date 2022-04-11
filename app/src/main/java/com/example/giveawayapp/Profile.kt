@@ -9,6 +9,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -18,8 +20,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -41,6 +45,7 @@ class Profile : ComponentActivity() {
         setContent {
 
             //ProfileScreen()
+            MainScreen()
         }
     }
 }
@@ -159,6 +164,15 @@ fun ProfileScreenPreview() {
 
 @Composable
 fun ProfileSection(){
+    Scaffold(
+        topBar = {
+
+            TopAppBar(
+                backgroundColor = MaterialTheme.colors.primary,
+                title = {Text("Profile")})
+        }
+    )
+    {
     Column(Modifier.fillMaxWidth()) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -188,20 +202,32 @@ fun ProfileSection(){
             modifier = Modifier
                 .fillMaxHeight()
                 .padding(bottom = 75.dp),
-            Arrangement.Bottom,
+            Arrangement.Top,
             Alignment.CenterHorizontally
         ) {
+            belowProfile()
+        }
+        Column(
+            modifier = Modifier
+                .fillMaxWidth(),
+                Arrangement.Bottom,
+                Alignment.Start
 
+        ) {
             val context = LocalContext.current
             TextButton(
                 onClick = {
-                    context.startActivity(Intent(context, Home::class.java))
+                    context.startActivity(Intent(context, EditProfileView::class.java))
                 },
-
-                ) {
-                Text("Edit Profile", style = MaterialTheme.typography.button, color = Color(0xFF673AB7))
+            ) {
+                Text(
+                    "Edit Profile",
+                    style = MaterialTheme.typography.button,
+                    color = Color(0xFF673AB7)
+                )
             }
         }
+    }
     }
 }
 @Composable
@@ -231,8 +257,8 @@ fun StatSection(modifier: Modifier = Modifier){
         modifier = modifier
     ) {
         ProfileStat(numberText = "18", text = "Donations")
-        ProfileStat(numberText = "346", text = "Items Received")
-        ProfileStat(numberText = "1023", text = "Flair")
+        ProfileStat(numberText = "16", text = "Items Received")
+        ProfileStat(numberText = "523", text = "Flair")
     }
 }
 @Composable
@@ -272,27 +298,27 @@ fun ProfileDescription(
             .padding(horizontal = 20.dp)
     ) {
         Text(
-            text = displayName,
+            text = "Name: $displayName",
             style = MaterialTheme.typography.body1,
             fontWeight = FontWeight.Bold,
             letterSpacing = letterSpacing,
             lineHeight = lineHeight
         )
         Text(
-            text = username,
+            text = "Username: $username",
             style = MaterialTheme.typography.body1,
             letterSpacing = letterSpacing,
             lineHeight = lineHeight
         )
         Text(
-            text = email,
+            text = "Email: $email",
             style = MaterialTheme.typography.body1,
             color = Color(0xFF3D3D91),
             letterSpacing = letterSpacing,
             lineHeight = lineHeight
         )
         Text(
-            text = address,
+            text = "Address: $address",
             style = MaterialTheme.typography.body1,
             color = Color(0xFF3D3D91),
             letterSpacing = letterSpacing,
@@ -306,6 +332,112 @@ fun ProfileDescription(
                 lineHeight = lineHeight
             )
 
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun belowProfile()
+{
+    var selectedTabIntex by remember {
+        mutableStateOf(0)
+    }
+    PostTabView(
+        imageWithText = listOf(
+            ImageWithText(
+                image = painterResource(id = R.drawable.ic_grid),
+                text = "Posts"
+            ),
+            ImageWithText(
+                image = painterResource(id = R.drawable.ic_reels),
+                text = "Reels"
+            ),
+            ImageWithText(
+                image = painterResource(id = R.drawable.ic_igtv),
+                text = "IGTV"
+            ),
+            ImageWithText(
+                image = painterResource(id = R.drawable.ic_profile),
+                text = "Profile"
+            ),
+        )
+    ){
+        selectedTabIntex = it
+    }
+    when(selectedTabIntex){
+        0 -> PostSection(
+            posts = listOf(
+                painterResource(id = R.drawable.iphone),
+                painterResource(id = R.drawable.mercedes)
+
+            ),
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
+}
+
+@Composable
+fun PostTabView(
+    modifier: Modifier = Modifier,
+    imageWithText: List<ImageWithText>,
+    onTabSelected: (selectedIndex: Int) -> Unit
+){
+    var selectedTabIndex by remember {
+        mutableStateOf(0)
+    }
+    val inactiveColor = Color(0xFF777777)
+    TabRow(
+        selectedTabIndex = selectedTabIndex,
+        backgroundColor = Color.Transparent,
+        contentColor = Color.Black,
+        modifier = modifier
+    ) {
+        imageWithText.forEachIndexed { index, item ->
+            Tab(
+                selected = selectedTabIndex == index,
+                selectedContentColor = Color.Black,
+                unselectedContentColor = inactiveColor,
+                onClick = {
+                    selectedTabIndex = index
+                    onTabSelected(index)
+                }
+            ) {
+                Icon(
+                    painter = item.image,
+                    contentDescription = item.text,
+                    tint = if (selectedTabIndex == index) Color.Black else inactiveColor,
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .size(20.dp)
+                )
+            }
+        }
+    }
+}
+@ExperimentalFoundationApi
+@Composable
+fun PostSection(
+    posts: List<Painter>,
+    modifier: Modifier = Modifier
+) {
+    LazyVerticalGrid(
+        cells = GridCells.Fixed(3),
+        modifier = modifier
+            .scale(1.01f)
+    ) {
+        items(posts.size) {
+            Image(
+                painter = posts[it],
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .aspectRatio(1f)
+                    .border(
+                        width = 1.dp,
+                        color = Color.White
+                    )
+            )
+        }
     }
 }
 

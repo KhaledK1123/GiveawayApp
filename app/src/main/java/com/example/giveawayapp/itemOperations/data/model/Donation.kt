@@ -26,5 +26,5 @@ data class Donation(
     val tags: List<String>,
 
     @SerializedName("images")
-    val images: List<String>
+    val images: List<Int>
     )

@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.sp
 import com.example.giveawayapp.ui.theme.Shapes
 import com.example.giveawayapp.viewmodel.CreateAccountViewModel
 
-class EditProfileView : ComponentActivity() {
+class DonationCreate : ComponentActivity() {
 
     //private val viewModel1: CreateAccountViewModel by viewModels()
 
@@ -45,7 +45,7 @@ class EditProfileView : ComponentActivity() {
 
                     TopAppBar(
                         backgroundColor = MaterialTheme.colors.primary,
-                        title = {Text("Edit Profile")})
+                        title = {Text("Create Donation")})
                 }
             )
             {
@@ -53,7 +53,7 @@ class EditProfileView : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    CreateAccountButton1()
+                    CreateDonationButton()
                 }
             }
         }
@@ -62,7 +62,7 @@ class EditProfileView : ComponentActivity() {
 
 
 @Composable
-fun CreateAccountButton1(modifier: Modifier = Modifier) {
+fun CreateDonationButton(modifier: Modifier = Modifier) {
 
     val context = LocalContext.current
     Column(
@@ -74,22 +74,18 @@ fun CreateAccountButton1(modifier: Modifier = Modifier) {
     )
     {
 
-        var fullName by rememberSaveable { mutableStateOf(value = "") }
-        var username by rememberSaveable { mutableStateOf(value = "") }
-        var email by rememberSaveable { mutableStateOf(value = "") }
-        var address by rememberSaveable { mutableStateOf(value = "") }
-        var city by rememberSaveable { mutableStateOf(value = "") }
-        var state by rememberSaveable { mutableStateOf(value = "") }
-        var zipCode by rememberSaveable { mutableStateOf(value = "") }
-        var password by rememberSaveable { mutableStateOf(value = "") }
-        var confirmPassword by rememberSaveable { mutableStateOf(value = "") }
+        var itemName by rememberSaveable { mutableStateOf(value = "") }
+        var description by rememberSaveable { mutableStateOf(value = "") }
+        var location by rememberSaveable { mutableStateOf(value = "") }
+        var tags by rememberSaveable { mutableStateOf(value = "") }
+
 
         TextField(
-            value = fullName,
-            onValueChange = { fullName = it },
+            value = itemName,
+            onValueChange = { itemName = it },
             label = {
                 Text(
-                    text = "Full Name",
+                    text = "Item Name",
                     style = MaterialTheme.typography.subtitle1
             ) },
 
@@ -102,10 +98,10 @@ fun CreateAccountButton1(modifier: Modifier = Modifier) {
         )
 
         TextField(
-            value = username,
-            onValueChange = { username = it },
+            value = description,
+            onValueChange = { description = it },
             label = { Text(
-                text= "Username",
+                text= "Description",
                 style = MaterialTheme.typography.subtitle1
             ) },
             modifier = Modifier
@@ -116,10 +112,10 @@ fun CreateAccountButton1(modifier: Modifier = Modifier) {
         )
 
         TextField(
-            value = email,
-            onValueChange = { email = it },
+            value = location,
+            onValueChange = { location = it },
             label = { Text(
-                text = "Email",
+                text = "Location",
                 style = MaterialTheme.typography.subtitle1
             ) },
             modifier = Modifier
@@ -130,10 +126,10 @@ fun CreateAccountButton1(modifier: Modifier = Modifier) {
         )
 
         TextField(
-            value = address,
-            onValueChange = { address = it },
+            value = tags,
+            onValueChange = { tags = it },
             label = { Text(
-                text = "Address",
+                text = "Tags",
                 style = MaterialTheme.typography.subtitle1
             ) },
             modifier = Modifier
@@ -141,78 +137,6 @@ fun CreateAccountButton1(modifier: Modifier = Modifier) {
                 .fillMaxWidth()
                 .clip(Shapes.medium)
                 .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
-        )
-
-        TextField(
-            value = city,
-            onValueChange = { city = it },
-            label = { Text(
-                text = "City",
-                style = MaterialTheme.typography.subtitle1
-            ) },
-            modifier = Modifier
-                .padding(top = 5.dp, start = 15.dp, end = 15.dp)
-                .fillMaxWidth()
-                .clip(Shapes.medium)
-                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
-        )
-
-        TextField(
-            value = state,
-            onValueChange = { state = it },
-            label = { Text(
-                text = "State",
-                style = MaterialTheme.typography.subtitle1
-            ) },
-            modifier = Modifier
-                .padding(top = 5.dp, start = 15.dp, end = 15.dp)
-                .fillMaxWidth()
-                .clip(Shapes.medium)
-                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
-        )
-
-        TextField(
-            value = zipCode,
-            onValueChange = { zipCode = it },
-            label = { Text(
-                text = "Zip Code",
-                style = MaterialTheme.typography.subtitle1
-            ) },
-            modifier = Modifier
-                .padding(top = 5.dp, start = 15.dp, end = 15.dp)
-                .fillMaxWidth()
-                .clip(Shapes.medium)
-                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
-        )
-
-        TextField(
-            value = password,
-            onValueChange = { password = it },
-            label = { Text(
-                text = "Password",
-                style = MaterialTheme.typography.subtitle1
-            ) },
-            modifier = Modifier
-                .padding(top = 5.dp, start = 15.dp, end = 15.dp)
-                .fillMaxWidth()
-                .clip(Shapes.medium)
-                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
-        )
-
-        TextField(
-            value = confirmPassword,
-            onValueChange = { confirmPassword = it },
-            label = { Text(
-                text = "Confirm Password",
-                style = MaterialTheme.typography.subtitle1
-            ) },
-            modifier = Modifier
-                .padding(top = 5.dp, bottom = 10.dp, start = 15.dp, end = 15.dp)
-                .fillMaxWidth()
-                .clip(Shapes.medium)
-                .border(.5.dp, MaterialTheme.colors.primaryVariant, Shapes.medium)
-
-
         )
 
         val backgroundColor = Color(0xFF673AB7)
@@ -224,12 +148,12 @@ fun CreateAccountButton1(modifier: Modifier = Modifier) {
                 .fillMaxWidth(),
             onClick = {
                     context.startActivity(Intent(context, Home::class.java))
-                    Toast.makeText(context,"Profile Updated!",Toast.LENGTH_LONG).show()
+                    Toast.makeText(context,"Creating Donation!",Toast.LENGTH_LONG).show()
                 }
             )
         {
             Text(
-                text = "Update",
+                text = "Create Donation!",
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.button,
                 modifier = Modifier
@@ -241,26 +165,4 @@ fun CreateAccountButton1(modifier: Modifier = Modifier) {
         CancelButton1()
 
     }
-}
-
-@Composable
-fun CancelButton1() {
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize(), Arrangement.Bottom, Alignment.CenterHorizontally
-    ) {
-
-        val context = LocalContext.current
-        TextButton(
-            onClick = {
-                context.startActivity(Intent(context, Home::class.java))
-                Toast.makeText(context, "Returning Home....", Toast.LENGTH_SHORT).show()
-            },
-
-            ) {
-            Text("Cancel", style = MaterialTheme.typography.h6, color = Color(0xFF673AB7))
-        }
-    }
-
 }
