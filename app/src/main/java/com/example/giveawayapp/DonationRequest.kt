@@ -33,6 +33,7 @@ import com.example.giveawayapp.itemOperations.data.model.DummyDonation.dummy
 import com.example.giveawayapp.itemOperations.data.model.DummyDonation.dummyList
 import com.example.giveawayapp.itemOperations.ui.ItemCard
 import com.example.giveawayapp.ui.theme.Shapes
+import com.example.giveawayapp.ui.theme.header
 
 
 class DonationRequest : ComponentActivity() {
@@ -58,7 +59,7 @@ fun DonationRequestButton() {
         topBar = {
 
             TopAppBar(
-                backgroundColor = MaterialTheme.colors.primary,
+                backgroundColor = header,
                 title = { Text("Request Item") })
         }
     )

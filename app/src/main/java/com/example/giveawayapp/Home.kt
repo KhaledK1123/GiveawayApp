@@ -34,6 +34,7 @@ import com.example.giveawayapp.itemOperations.data.model.DummyDonation
 import com.example.giveawayapp.itemOperations.ui.ItemCard
 import com.example.giveawayapp.itemOperations.ui.ItemClickable
 import com.example.giveawayapp.ui.theme.Shapes
+import com.example.giveawayapp.ui.theme.header
 
 class Home : ComponentActivity() {
     @ExperimentalFoundationApi
@@ -95,8 +96,8 @@ fun HomeScreen() {
         topBar = {
 
             TopAppBar(
-                backgroundColor = MaterialTheme.colors.primary,
-                title = {Text("Donations")})
+                backgroundColor = header,
+                title = {Text(text = "Donations", color = Color.White)})
         }
     ) {
         Column(
@@ -108,10 +109,13 @@ fun HomeScreen() {
                 val context = LocalContext.current
                 Button(onClick = { context.startActivity(Intent(context, DonationCreate::class.java))},
                         modifier = Modifier
-                        .padding(top = 2.dp, start = 15.dp, end = 15.dp)
+                        .padding(top = 8.dp, start = 15.dp, end = 15.dp)
                         .fillMaxWidth()
-                        .clip(Shapes.medium)) {
-                        Text(text = "Create Post")
+                        .clip(Shapes.medium),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = header)
+                ) {
+                        Text(text = "Create Post",
+                            color = Color.White)
                 }
             }
             Donations(donations = DummyDonation.dummyList)
@@ -126,7 +130,7 @@ fun BottomNavigationBar(navController: NavController) {
         NavigationItem.Profile
     )
     BottomNavigation(
-        backgroundColor = colorResource(id = R.color.purple_500),
+        backgroundColor = header,
         contentColor = Color.White
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()

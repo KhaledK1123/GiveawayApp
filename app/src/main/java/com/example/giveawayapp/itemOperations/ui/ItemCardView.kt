@@ -197,15 +197,20 @@ fun ItemCard(donation: Donation, modifier:Modifier = Modifier
 
             Divider()
 
+            Row(modifier = Modifier.padding(8.dp)) {
+
                 val context = LocalContext.current
+
                 TextButton(onClick = {
                     context.startActivity(Intent(context, DonationRequest::class.java))
                     Toast.makeText(context,"Requested Item....", Toast.LENGTH_LONG).show()
 
                 }) {
                     Text(text = "Request Item")
-                }
-                }
+                }}
+
+
+        }
                 //and these subtitle formats:
 
 //                Text(text = donation.time)
@@ -214,8 +219,8 @@ fun ItemCard(donation: Donation, modifier:Modifier = Modifier
 //                    items(donation.tags.size) { index ->
 //                        Text(text = donation.tags[index])
 //                    }
-                }
-                }
+    }
+}
 
 @Composable
 @Preview
