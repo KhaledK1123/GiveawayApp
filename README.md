@@ -9,9 +9,9 @@ The purpose of this localized app is to create a platform for people to donate c
 
 
 ## Technologies Used:
-Tech 1 - Android Studio,
-Tech 2 - Kotlin,
-Tech 3 - Retrofit
+* Android Studio
+* Kotlin
+* Retrofit
 
 
 ## Features:
