@@ -443,7 +443,7 @@ fun PostSection(
 
 
 
-/* Lines 314-439: For reference only, now)
+/* Lines 448-570: For reference only, now)
 
                 SimpleText >4("Change Your Password")
 
@@ -564,7 +564,7 @@ fun SubmitButton >2() {
     }
 }
 
-/* Fixing Line 150 errors (1-2, depending): function needed, to balance
+/* Fixing earlier lines' errors (1-2, depending): function needed, to balance
 - @ end of last composable */
 'fun Button(shape: RoundedCornerShape, colors: ButtonColors, modifier: Modifier,
            onClick: () -> Unit) {
