@@ -133,7 +133,7 @@ fun SubmitButton2() {
     }
 }
 
-// Instantiate, for line 121 call
+// Instantiate, for call below
 fun Button(shape: RoundedCornerShape, colors: ButtonColors, modifier: Modifier,
            onClick: () -> Unit) {
 
@@ -443,7 +443,7 @@ fun PostSection(
 
 
 
-/* Lines 448-570: For reference only, now)
+/* From two lines, below, through the end: For reference only, now
 
                 SimpleText >4("Change Your Password")
 
@@ -496,7 +496,7 @@ fun ConfirmPasswordChange(text: String) {
     )
 }
 
-// Other statements ('if-else', or similar?) needed, after line 98 ??
+// Other statements ('if-else', or similar?) needed, afterwards ??
 fun ChangePasswordInput(change_password: String, confirm_password_change: String): String
 {
    var status: String = ""
